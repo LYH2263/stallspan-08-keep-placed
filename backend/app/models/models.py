@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from sqlalchemy import Date, DateTime, Float, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, Date, DateTime, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
 
@@ -37,4 +37,5 @@ class AllocationRun(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     segment_id: Mapped[int] = mapped_column(ForeignKey("segments.id"))
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    keep_placed: Mapped[bool] = mapped_column(Boolean, default=False)
     result_json: Mapped[str] = mapped_column(Text, default="{}")
